@@ -15,7 +15,8 @@
  * the License.
  */
 
-require_once 'lib/D2LAppContextFactory.php';
+require_once 'config.php';
+require_once $config['libpath'] . '/D2LAppContextFactory.php';
 
 session_start();
 
