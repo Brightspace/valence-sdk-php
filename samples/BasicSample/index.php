@@ -32,8 +32,10 @@ session_write_close();
 <form method="get" action="authenticateUser.php" id="configForm">
 <?php if($authenticated) { ?>
     <input type="submit" name="authBtn" value="Deauthenticate">
+
 <?php } else { ?>
     <input type="submit" name="authBtn" value="Authenticate">
+    <span>Note: to authenticate against the test server, you can user username "sampleapiuser" and password "Tisabiiif".</span>
 <?php } ?>
 </form>
 
