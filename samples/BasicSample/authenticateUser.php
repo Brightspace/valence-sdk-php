@@ -17,12 +17,11 @@
 
 require_once 'config.php';
 require_once $config['libpath'] . '/D2LAppContextFactory.php';
-require_once 'valenceCredentials.php';
 
 $host   = "valence.desire2learn.com";
 $port   = "443";
 $scheme = "https";
- 
+
 if($_GET['authBtn'] == 'Deauthenticate') {
     session_start();
     unset($_SESSION['hostSpec']);
@@ -33,7 +32,7 @@ if($_GET['authBtn'] == 'Deauthenticate') {
 }else{
     $redirectPage = $_SERVER["HTTP_REFERER"];
     $authContextFactory = new D2LAppContextFactory();
-    $authContext = $authContextFactory->createSecurityContext($appId, $appKey);
+    $authContext = $authContextFactory->createSecurityContext($config['appId'], $config['appKey']);
     $hostSpec = new D2LHostSpec($host, $port, $scheme);
     $url = $authContext->createUrlForAuthenticationFromHostSpec($hostSpec, $redirectPage);
     session_start();

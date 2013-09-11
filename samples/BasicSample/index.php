@@ -18,7 +18,6 @@
 require_once 'config.php';
 require_once $config['libpath'] . '/D2LAppContextFactory.php';
 
-require_once 'valenceCredentials.php';
 require_once 'doRequest.php';
 
 $authenticated = false;
@@ -38,10 +37,10 @@ if (isset($_GET['x_a']) && isset($_GET['x_b'])){
 		$authenticated = True;
 	}
 	session_write_close();
-		
+
 	if ($authenticated){
 		$authContextFactory = new D2LAppContextFactory();
-		$authContext = $authContextFactory->createSecurityContext($appId, $appKey);
+		$authContext = $authContextFactory->createSecurityContext($config['appId'], $config['appKey']);
 		$opContext = $authContext->createUserContextFromHostSpec($hostSpec, $userId, $userKey);
 
 		$apiRequest = '/d2l/api/lp/1.0/users/whoami';
