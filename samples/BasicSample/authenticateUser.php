@@ -17,30 +17,27 @@
 
 require_once 'config.php';
 require_once $config['libpath'] . '/D2LAppContextFactory.php';
-require_once 'valenceCredentials.php';
 
-$host   = "valence.desire2learn.com";
-$port   = "443";
-$scheme = "https";
- 
-if($_GET['authBtn'] == 'Deauthenticate') {
+function getPageURL() {
+    $portString = '';
+    if (($_SERVER['HTTPS'] == 'on' && $_SERVER['SERVER_PORT'] != 443)
+     || ($_SERVER['HTTPS'] == 'off' && $_SERVER['SERVER_PORT'] != 80)) {
+            $portString = ':' . $_SERVER['SERVER_PORT'];
+    }
+    return "http" . ($_SERVER['HTTPS'] == 'on' ? 's' : '') . '://' . $_SERVER['SERVER_NAME'] . $portString . $_SERVER['REQUEST_URI'];
+}
+
+if ($_GET['authBtn'] == 'Deauthenticate') {
     session_start();
-    unset($_SESSION['hostSpec']);
     unset($_SESSION['userId']);
     unset($_SESSION['userKey']);
     session_write_close();
     header("location: index.php");
-}else{
-    $redirectPage = $_SERVER["HTTP_REFERER"];
+} else {
+    $redirectPage = str_replace('authenticateUser.php', 'postLogin.php', getPageURL());
     $authContextFactory = new D2LAppContextFactory();
-    $authContext = $authContextFactory->createSecurityContext($appId, $appKey);
-    $hostSpec = new D2LHostSpec($host, $port, $scheme);
+    $authContext = $authContextFactory->createSecurityContext($config['appId'], $config['appKey']);
+    $hostSpec = new D2LHostSpec($config['host'], $config['port'], $config['scheme']);
     $url = $authContext->createUrlForAuthenticationFromHostSpec($hostSpec, $redirectPage);
-    session_start();
-    $_SESSION['hostSpec'] = $hostSpec;
-    session_write_close();
-
     header("Location: $url");
 }
-
-?>
