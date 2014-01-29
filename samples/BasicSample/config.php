@@ -2,7 +2,7 @@
 $config = array(
     'libpath'    => '../../lib',
 
-    'host'       => 'valence.desire2learn.com',
+    'host'       => 'lms.valence.desire2learn.com',
     'port'       => 443,
     'scheme'     => 'https',
 
