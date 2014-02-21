@@ -48,9 +48,21 @@ function doValenceRequest($verb, $route) {
     $ch = curl_init();
     $options = array(
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_CAINFO         => getcwd() . '/cacert.pem',
         CURLOPT_CUSTOMREQUEST  => $verb,
-        CURLOPT_URL            => $uri
+        CURLOPT_URL            => $uri,
+        
+        /* Explicitly turn this on because some versions of cURL (and therefore PHP installations) do
+           not default this to true. This verifies the SSL certs that are used to communicate with an
+           LMS via HTTPS. It is vitally important that you always do this in production. */
+        CURLOPT_VERIFYPEER => true,
+        
+        /* CURLOPT_CAINFO points to a liste of trusted certificates to use for verifying (see above).
+           If you are on some platforms (e.g. possibly Windows) you may need to explicitly provide these.
+           Your platform may not require this as it may provide a system-wide setting (which you should prefer).
+           If you need to explicitly set this please get an updated file from http://curl.haxx.se/docs/caextract.html
+           and preferably set this up in your php.ini globally. For more information, see
+           http://snippets.webaware.com.au/howto/stop-turning-off-curlopt_ssl_verifypeer-and-fix-your-php-config/ */
+        CURLOPT_CAINFO         => getcwd() . '/cacert.pem'
     );
     curl_setopt_array($ch, $options);
 
