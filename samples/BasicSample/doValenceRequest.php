@@ -54,7 +54,7 @@ function doValenceRequest($verb, $route) {
         /* Explicitly turn this on because some versions of cURL (and therefore PHP installations) do
            not default this to true. This verifies the SSL certs that are used to communicate with an
            LMS via HTTPS. It is vitally important that you always do this in production. */
-        CURLOPT_VERIFYPEER => true,
+        CURLOPT_SSL_VERIFYPEER => true,
         
         /* CURLOPT_CAINFO points to a liste of trusted certificates to use for verifying (see above).
            If you are on some platforms (e.g. possibly Windows) you may need to explicitly provide these.
