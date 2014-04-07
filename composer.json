@@ -1,5 +1,5 @@
 {
-    "name": "notebowl/d2l-sdk",
+    "name": "Desire2Learn-Valence/valence-sdk-php",
     "description": "Desire2Learn Valence API for PHP",
     "keywords": ["d2l", "desire", "2", "learn", "api", "valence"],
     "license": "MIT",
