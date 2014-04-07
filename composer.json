@@ -1,0 +1,14 @@
+{
+    "name": "Desire2Learn-Valence/valence-sdk-php",
+    "description": "Desire2Learn Valence API for PHP",
+    "keywords": ["d2l", "desire", "2", "learn", "api", "valence"],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "classmap": [
+            "lib"
+        ]
+    }
+}
