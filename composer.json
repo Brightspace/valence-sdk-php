@@ -1,5 +1,5 @@
 {
-    "name": "Desire2Learn-Valence/valence-sdk-php",
+    "name": "desire2learn/valence-sdk-php",
     "description": "Desire2Learn Valence SDK for PHP",
     "keywords": ["d2l", "desire", "2", "learn", "api", "valence"],
     "license": "Apache-2.0",
